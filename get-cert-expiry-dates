@@ -1,1 +1,2 @@
-kubectl get secrets -n cattle-system -o name --field-selector type=kubernetes.io/tls |  xargs -I {} sh -c "echo {} && kubectl get {} -n cattle-system -o jsonpath='{.data.tls\.crt}' | base64 -d | openssl x509 -enddate -noout"
+kubectl get secrets -n cattle-system -o name --field-selector type=kubernetes.io/tls | xargs -I {} sh -c \
+"echo {} && kubectl get {} -n cattle-system -o jsonpath='{.data.tls\.crt}' | base64 -d | openssl x509 -enddate -noout"
